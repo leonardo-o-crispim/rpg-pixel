@@ -1,0 +1,272 @@
+/* pixel.css - componentes: cartoes, botoes, barras, avisos e janelas.
+
+   Linguagem visual: contorno grosso escuro em tudo, cantos arredondados,
+   "sombra de brinquedo" embaixo (o botao afunda ao tocar) e texto branco
+   com contorno sobre cores fortes. A arte pixel fica nos canvas e icones. */
+
+.px {
+  border: var(--linha) solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: 0 4px 0 var(--sombra);
+}
+
+/* texto com contorno escuro (titulos sobre cor forte); a cor vem de quem usa */
+.contornado {
+  text-shadow:
+    2px 0 0 var(--borda), -2px 0 0 var(--borda), 0 2px 0 var(--borda), 0 -2px 0 var(--borda),
+    1.5px 1.5px 0 var(--borda), -1.5px 1.5px 0 var(--borda), 1.5px -1.5px 0 var(--borda), -1.5px -1.5px 0 var(--borda),
+    0 4px 0 var(--borda);
+}
+
+/* ---------- cartao ---------- */
+.painel {
+  background: var(--painel);
+  padding: 12px 14px;
+  border: var(--linha) solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: inset 0 -4px 0 rgba(42, 24, 48, 0.08), 0 4px 0 var(--sombra);
+}
+.painel--escuro { background: var(--painel-2); }
+
+.titulo-secao {
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+  margin: 0 0 8px;
+}
+
+/* ---------- botao ---------- */
+.btn {
+  --cor-btn: #ffffff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 8px 16px;
+  border: var(--linha) solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--cor-btn);
+  color: var(--texto);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -5px 0 rgba(42, 24, 48, 0.18),
+    0 4px 0 var(--borda);
+  transition: transform 60ms ease-out;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: inset 0 3px 0 rgba(42, 24, 48, 0.15), 0 1px 0 var(--borda);
+}
+.btn:focus-visible { outline: 3px dashed var(--borda); outline-offset: 4px; }
+.btn:disabled { filter: grayscale(0.7); opacity: 0.6; cursor: not-allowed; }
+
+.btn--primario { --cor-btn: var(--ouro); }
+.btn--verde, .btn--perigo, .btn--ativo { color: #fff; text-shadow: 0 2px 0 var(--borda), 1px 0 0 var(--borda), -1px 0 0 var(--borda), 0 -1px 0 var(--borda); }
+.btn--verde { --cor-btn: var(--verde); }
+.btn--perigo { --cor-btn: var(--perigo); }
+.btn--ativo { --cor-btn: var(--acento); }
+.btn--fantasma { background: transparent; border-color: transparent; box-shadow: none; color: inherit; }
+.btn--bloco { display: flex; width: 100%; }
+.btn--grande { min-height: 62px; font-size: 21px; }
+.btn--pequeno { min-height: 36px; padding: 4px 12px; font-size: 13px; border-radius: var(--raio-p); }
+
+.btn .selo {
+  position: absolute;
+  top: -10px;
+  right: -8px;
+  padding: 1px 6px;
+  border: 2px solid var(--borda);
+  border-radius: 999px;
+  background: var(--painel);
+  color: var(--texto-2);
+  font-size: 10px;
+  font-weight: 900;
+  text-shadow: none;
+}
+
+/* ---------- barras (vida, mana, xp) ---------- */
+.barra {
+  position: relative;
+  height: 16px;
+  border: var(--linha) solid var(--borda);
+  border-radius: 999px;
+  background: #4a3450;
+  overflow: hidden;
+}
+.barra__fundo { display: none; }
+.barra__fill {
+  position: relative;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: var(--cor, var(--xp));
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2), inset 0 3px 0 rgba(255, 255, 255, 0.45);
+  transition: width 260ms ease-out;
+}
+.barra__rotulo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 1px 1px 0 var(--borda), -1px 1px 0 var(--borda), 1px -1px 0 var(--borda), -1px -1px 0 var(--borda);
+}
+.barra--alta { height: 22px; }
+.barra--alta .barra__rotulo { font-size: 12px; }
+.barra--vida { --cor: var(--vida); }
+.barra--mana { --cor: var(--mana); }
+.barra--xp { --cor: var(--xp); }
+
+/* ---------- moeda / numeros ---------- */
+.moeda {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 900;
+  color: var(--ouro-texto);
+  font-variant-numeric: tabular-nums;
+}
+.num { font-variant-numeric: tabular-nums; font-weight: 800; }
+
+/* ---------- cabecalho de tela ---------- */
+.cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px 8px 6px;
+  background: var(--topo);
+  border-bottom: var(--linha) solid var(--borda);
+  box-shadow: inset 0 -4px 0 var(--topo-2);
+  color: var(--texto-topo);
+  position: relative;
+  z-index: 2;
+}
+.cabecalho__titulo {
+  flex: 1;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cabecalho .moeda {
+  padding: 3px 10px 3px 6px;
+  border: 2px solid var(--borda);
+  border-radius: 999px;
+  background: var(--painel);
+}
+.btn-voltar {
+  min-width: 42px;
+  min-height: 40px;
+  padding: 0;
+  font-size: 22px;
+  --cor-btn: #ffffff;
+  color: var(--texto);
+}
+
+/* ---------- avisos (toast) ---------- */
+.toast-root {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + var(--seguro-base));
+  transform: translateX(-50%);
+  width: min(440px, calc(100% - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  z-index: 50;
+}
+.toast {
+  background: var(--painel);
+  padding: 10px 14px;
+  font-weight: 800;
+  text-align: center;
+  animation: toast-in 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+}
+.toast--ouro { background: #fff0b8; }
+.toast--sucesso { background: #d8ffc8; }
+.toast--saindo { animation: toast-out 180ms ease-in both; }
+@keyframes toast-in { from { transform: translateY(14px) scale(0.9); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes toast-out { to { transform: translateY(8px); opacity: 0; } }
+
+/* ---------- janela modal ---------- */
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(20, 30, 70, 0.55);
+  animation: entrar-fundo 140ms ease-out both;
+}
+.modal {
+  width: min(400px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: modal-in 220ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+.modal h2 {
+  margin: -2px 0 10px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.modal p { margin: 0 0 12px; color: var(--texto-2); }
+.modal__acoes { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; margin-top: 14px; }
+.modal textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 8px;
+  border: 2px solid var(--borda);
+  border-radius: var(--raio-p);
+  background: #fff;
+  color: var(--texto);
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 11px;
+  word-break: break-all;
+  resize: vertical;
+}
+@keyframes entrar-fundo { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-in { from { transform: scale(0.9); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- campo de texto ---------- */
+.campo {
+  width: 100%;
+  padding: 10px 12px;
+  border: var(--linha) solid var(--borda);
+  border-radius: var(--raio-p);
+  background: #fff;
+  color: var(--texto);
+  font-size: 17px; /* >=16px evita zoom automatico no iOS */
+  font-weight: 800;
+  outline: none;
+  box-shadow: inset 0 3px 0 rgba(42, 24, 48, 0.08);
+}
+.campo:focus { box-shadow: 0 0 0 3px var(--ouro); }
+
+/* ---------- utilidades ---------- */
+.linha { display: flex; align-items: center; gap: 8px; }
+.linha--entre { justify-content: space-between; }
+.grade-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grade-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.mudo { color: var(--texto-2); }
+.mudo-2 { color: var(--texto-3); }
+.pequeno { font-size: 12px; }
+.centro { text-align: center; }
+.sprite { image-rendering: pixelated; display: block; }

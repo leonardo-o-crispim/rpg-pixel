@@ -1,0 +1,269 @@
+/* screens.css - layout de cada tela. Componentes genericos ficam em pixel.css. */
+
+.rolavel > * + * { margin-top: 14px; }
+
+.rodape {
+  padding: 12px 14px calc(14px + var(--seguro-base));
+  background: var(--topo);
+  border-top: var(--linha) solid var(--borda);
+}
+.rodape--acoes { display: flex; flex-direction: column; gap: 10px; }
+
+.selo-inline {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border: 2px solid var(--borda);
+  border-radius: 999px;
+  background: var(--painel-2);
+  color: var(--texto-2);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.titulo-secao--fora { margin: 20px 4px 0; color: #fff; text-shadow: 0 2px 0 var(--borda), 1px 0 0 var(--borda), -1px 0 0 var(--borda), 0 -1px 0 var(--borda); }
+.cor-perigo { color: var(--perigo); }
+.cor-sucesso { color: var(--sucesso); }
+
+/* ================================================================ criacao */
+.logo {
+  margin: 18px 0 2px;
+  text-align: center;
+  font-size: 46px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.logo .l1, .logo .l2 { display: inline-block; }
+.logo .l1 { color: var(--ouro); transform: rotate(-4deg); }
+.logo .l2 { color: #fff; margin-left: 10px; transform: rotate(3deg); }
+.tela-criacao .rolavel > p.mudo { color: var(--texto); font-weight: 700; }
+
+.cartao-classe {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+.cartao-classe + .cartao-classe { margin-top: 12px; }
+.cartao-classe--ativo { background: var(--painel-3); box-shadow: 0 0 0 3px #fff, 0 4px 0 var(--sombra); }
+.cartao-classe--bloqueado { opacity: 0.7; cursor: not-allowed; filter: grayscale(0.7); }
+.cartao-classe__sprite {
+  flex: none;
+  padding: 6px;
+  border: 2px solid var(--borda);
+  border-radius: var(--raio-p);
+  background: linear-gradient(#9ed8ff 0 62%, #5ece4a 62%);
+}
+.cartao-classe__nome { font-weight: 900; font-size: 18px; text-transform: uppercase; }
+.cartao-classe__papel { color: var(--ouro-texto); font-size: 13px; font-weight: 800; margin-top: 1px; }
+.cartao-classe__desc { margin: 4px 0 6px; color: var(--texto-2); font-size: 13px; }
+.cartao-classe__attrs { display: flex; gap: 10px; font-size: 12px; color: var(--texto-2); font-variant-numeric: tabular-nums; }
+.cartao-classe__attrs b { color: var(--texto); font-weight: 900; }
+
+/* ==================================================================== hub */
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--topo);
+  border-bottom: var(--linha) solid var(--borda);
+  box-shadow: inset 0 -4px 0 var(--topo-2);
+  color: var(--texto-topo);
+  position: relative;
+  z-index: 2;
+}
+.hud__nome { display: flex; flex-direction: column; line-height: 1.15; }
+.hud__nome strong { font-size: 19px; font-weight: 900; }
+.hud__nome .mudo { color: #d8e8ff; font-weight: 700; }
+.hud .moeda { padding: 4px 12px 4px 7px; border: 2px solid var(--borda); border-radius: 999px; background: var(--painel); font-size: 16px; }
+
+.hub__palco { overflow: hidden; line-height: 0; display: flex; justify-content: center; background: #9ed8ff; }
+.hub__xp { display: flex; align-items: center; gap: 10px; }
+.hub__xp .barra { flex: 1; }
+.hub__nivel {
+  padding: 4px 10px;
+  border: var(--linha) solid var(--borda);
+  border-radius: 999px;
+  background: var(--ouro);
+  font-size: 15px;
+  font-weight: 900;
+}
+.hub__partir { margin-top: 16px !important; }
+.hub__dica { margin-top: 8px !important; color: var(--texto) !important; font-weight: 700; }
+
+.btn-icone {
+  flex-direction: column;
+  gap: 6px;
+  min-height: 84px;
+  padding: 10px 4px 8px;
+  font-size: 12px;
+  --cor-btn: var(--painel);
+}
+
+.grade-attrs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; }
+.attr { display: flex; flex-direction: column; padding: 6px 2px; border: 2px solid var(--borda); border-radius: var(--raio-p); background: var(--poco); }
+.attr__valor { font-size: 22px; font-weight: 900; }
+.attr__nome { font-size: 10px; color: var(--texto-2); font-weight: 800; text-transform: uppercase; }
+.grade-attrs + p { margin: 8px 0 0; }
+
+.stats { gap: 2px 16px; }
+.stat { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 2px dotted rgba(42, 24, 48, 0.12); }
+.stat__rotulo { color: var(--texto-2); font-size: 13px; font-weight: 700; }
+.stat__valor { font-weight: 900; }
+
+/* =================================================================== mapa */
+.regiao { padding: 0 0 12px; overflow: hidden; }
+.regiao--bloqueada { filter: grayscale(0.9) brightness(0.92); }
+.regiao__topo { position: relative; line-height: 0; border-bottom: var(--linha) solid var(--borda); }
+.regiao__banner { width: 100%; height: auto; aspect-ratio: 160 / 44; }
+.regiao__titulo {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 18px 10px 6px;
+  line-height: 1.2;
+  background: linear-gradient(transparent, rgba(20, 30, 70, 0.55));
+}
+.regiao__titulo h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 0 var(--borda), 1.5px 0 0 var(--borda), -1.5px 0 0 var(--borda), 0 -1.5px 0 var(--borda);
+}
+.regiao__titulo span {
+  padding: 1px 8px;
+  border: 2px solid var(--borda);
+  border-radius: 999px;
+  background: var(--ouro);
+  color: var(--texto);
+  font-weight: 900;
+  white-space: nowrap;
+}
+.regiao__desc { margin: 10px 14px 0; }
+.regiao__trava { display: flex; align-items: center; gap: 8px; margin: 10px 14px 0; font-weight: 700; }
+.regiao__mapas { display: flex; flex-direction: column; gap: 10px; padding: 10px 12px 0; }
+
+.mapa-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 6px 12px;
+  border: var(--linha) solid var(--borda);
+  border-radius: var(--raio-p);
+  background: #fff;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 -4px 0 rgba(42, 24, 48, 0.08), 0 3px 0 var(--borda);
+}
+.mapa-item:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 var(--borda); }
+.mapa-item--bloqueado { background: var(--poco); opacity: 0.75; cursor: not-allowed; box-shadow: none; }
+.mapa-item--vencido { background: #e8ffd8; }
+.mapa-item--chefe:not(.mapa-item--bloqueado) { background: #ffe0dc; }
+.mapa-item__icone { flex: none; width: 34px; display: flex; justify-content: center; }
+.mapa-item__novo {
+  padding: 2px 5px;
+  border: 2px solid var(--borda);
+  border-radius: 6px;
+  background: var(--ouro);
+  font-size: 10px;
+  font-weight: 900;
+}
+.mapa-item__info { flex: 1; display: flex; flex-direction: column; line-height: 1.25; }
+.mapa-item__nome { font-weight: 900; font-size: 15px; }
+.mapa-item__meta { font-weight: 600; }
+.mapa-item__vitorias { color: var(--sucesso); }
+
+.detalhe-mapa > .linha { padding: 4px 0; }
+.detalhe-mapa__aviso { margin: 6px 0 12px !important; color: var(--texto) !important; font-weight: 700; }
+.detalhe-mapa__monstros { display: flex; flex-wrap: wrap; gap: 8px; }
+.monstro-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 92px;
+  padding: 8px 4px 6px;
+  border: 2px solid var(--borda);
+  border-radius: var(--raio-p);
+  background: linear-gradient(#bfe6ff 0 60%, #8ee06a 60%);
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.2;
+}
+.monstro-mini--chefe { background: linear-gradient(#ffc8c0 0 60%, #ff9a8a 60%); }
+
+/* ================================================================ combate */
+.combate__titulo { flex: 1; display: flex; flex-direction: column; line-height: 1.15; min-width: 0; padding-left: 6px; }
+.combate__titulo strong { font-size: 16px; font-weight: 900; text-transform: uppercase; }
+.combate__titulo .mudo { color: #d8e8ff; font-weight: 700; }
+.combate__vel { display: flex; gap: 6px; }
+.combate__vel .btn { min-width: 42px; padding: 4px 6px; }
+.combate__palco { line-height: 0; display: flex; justify-content: center; background: #2a1830; border-bottom: var(--linha) solid var(--borda); }
+.combate__heroi { margin-bottom: 8px; font-size: 16px; font-weight: 900; }
+.combate__heroi .num {
+  padding: 1px 9px;
+  border: 2px solid var(--borda);
+  border-radius: 999px;
+  background: var(--ouro);
+  font-size: 13px;
+}
+.combate__barras { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.combate__ganhos { display: flex; justify-content: space-around; align-items: center; padding: 8px; font-weight: 900; }
+.combate__log { min-height: 1.4em; text-align: center; color: var(--texto) !important; font-weight: 700; }
+
+/* ============================================================== resultado */
+.resultado__titulo { text-align: center; padding: 18px 0 4px; }
+.resultado__titulo h1 {
+  margin: 0;
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+}
+.resultado__titulo p { margin: 8px 0 0; color: var(--texto); font-weight: 800; }
+.resultado--vitoria .resultado__titulo h1 { color: var(--ouro); }
+.resultado--derrota .resultado__titulo h1 { color: var(--perigo); }
+.resultado--recuo .resultado__titulo h1 { color: #fff; }
+.resultado__linha { padding: 6px 0; border-bottom: 2px dotted rgba(42, 24, 48, 0.12); }
+.resultado__linha .mudo { font-weight: 700; }
+.resultado__linha .num { font-weight: 900; }
+.resultado__xp { margin-top: 12px; }
+.resultado__nivel { background: #e8ffd8; text-align: center; }
+.resultado__nivel-num { margin: 0 0 8px; font-size: 32px; font-weight: 900; color: var(--sucesso); }
+.resultado__ganhos { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.ganho { padding: 3px 10px; border: 2px solid var(--borda); border-radius: 999px; background: #fff; font-size: 13px; font-weight: 900; color: var(--sucesso); }
+.desbloqueio { display: flex; align-items: center; gap: 10px; margin: 6px 0; font-weight: 700; }
+.resultado__dica { color: var(--texto) !important; font-weight: 700; }
+
+/* ================================================================== config */
+.opcao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 2px dotted rgba(42, 24, 48, 0.12);
+}
+.opcao:last-child { border-bottom: 0; }
+.opcao__texto { display: flex; flex-direction: column; line-height: 1.3; }
+.opcao__rotulo { font-weight: 800; }
+.interruptor { min-width: 108px; }
+.tela-config .painel .grade-2 { margin: 10px 0 10px; }
+.tela-config .rolavel > p { color: var(--texto); font-weight: 700; }
